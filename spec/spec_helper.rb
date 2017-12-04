@@ -16,7 +16,11 @@ ENV['RACK_ENV'] = 'test'
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # when a spec fails, the printed backtrace can contain dozens of lines of
+  # framework code, obscuring the application code you're looking for. The
+  # following filters out the included gems from said backtrace.
   config.filter_gems_from_backtrace 'rack', 'rack-test', 'sequel', 'sinatra'
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -98,3 +102,4 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+end
